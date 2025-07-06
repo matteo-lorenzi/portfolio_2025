@@ -3,6 +3,145 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { projectsData } from '../data/projectsData';
 import './ProjectDetailsPage.scss';
 
+// Mapping des technologies vers leurs icônes
+const getTechIcon = (tech: string): string => {
+  const techIcons: Record<string, string> = {
+    // Languages de programmation
+    'JavaScript': '🟨',
+    'TypeScript': '🔷',
+    'Python': '🐍',
+    'Java': '☕',
+    'PHP': '🐘',
+    'C': '⚙️',
+    'C++': '⚡',
+    'C#': '🔷',
+    'Go': '🐹',
+    'Rust': '🦀',
+    'Ruby': '💎',
+    'Swift': '🍎',
+    'Kotlin': '🟩',
+    'Dart': '🎯',
+    
+    // Frontend
+    'HTML': '🌐',
+    'CSS': '🎨',
+    'React': '⚛️',
+    'Vue': '💚',
+    'Angular': '🅰️',
+    'Svelte': '🔥',
+    'Next.js': '▲',
+    'Nuxt.js': '💚',
+    'Gatsby': '🟣',
+    'Vite': '⚡',
+    
+    // Backend & Frameworks
+    'Node.js': '💚',
+    'Express': '🚂',
+    'Django': '🎸',
+    'Flask': '🌶️',
+    'Spring': '🌱',
+    'Laravel': '🟠',
+    'Symfony': '🎼',
+    'FastAPI': '🚀',
+    'NestJS': '🐈',
+    
+    // Base de données
+    'MySQL': '🐬',
+    'PostgreSQL': '🐘',
+    'MongoDB': '🍃',
+    'SQLite': '💿',
+    'Redis': '🟥',
+    'Firebase': '🔥',
+    'Supabase': '⚡',
+    
+    // Outils & DevOps
+    'Git': '📝',
+    'GitHub': '🐙',
+    'GitLab': '🦊',
+    'Docker': '🐳',
+    'Kubernetes': '☸️',
+    'AWS': '☁️',
+    'Azure': '☁️',
+    'GCP': '☁️',
+    'Vercel': '▲',
+    'Netlify': '🌐',
+    
+    // Game Development
+    'Unity': '🎮',
+    'Unreal': '🎮',
+    'Pygame': '🐍',
+    'Godot': '🎯',
+    
+    // Mobile
+    'React Native': '📱',
+    'Flutter': '💙',
+    'Ionic': '⚡',
+    'Xamarin': '🔷',
+    
+    // Design & UI
+    'Figma': '🎨',
+    'Adobe XD': '🎨',
+    'Sketch': '💎',
+    'Photoshop': '🎨',
+    'Illustrator': '🎨',
+    
+    // Testing
+    'Jest': '🃏',
+    'Cypress': '🌲',
+    'Selenium': '🔍',
+    'Playwright': '🎭',
+    
+    // Autres
+    'Linux': '🐧',
+    'Windows': '🪟',
+    'macOS': '🍎',
+    'VS Code': '💙',
+    'IntelliJ': '🧠',
+    'Webpack': '📦',
+    'Babel': '🗼',
+    'ESLint': '🔍',
+    'Prettier': '✨',
+    'SASS': '🎨',
+    'SCSS': '🎨',
+    'Tailwind': '💨',
+    'Bootstrap': '🅱️',
+    'Material-UI': '🎨',
+    'Ant Design': '🐜',
+    
+    // Formats & Protocoles
+    'JSON': '📋',
+    'XML': '📄',
+    'GraphQL': '🔗',
+    'REST': '🌐',
+    'WebSocket': '🔌',
+    'gRPC': '⚡',
+    
+    // AI & ML
+    'TensorFlow': '🧠',
+    'PyTorch': '🔥',
+    'Scikit-learn': '📊',
+    'OpenCV': '👁️',
+    'Pandas': '🐼',
+    'NumPy': '🔢',
+    
+    // CMS & E-commerce
+    'WordPress': '📝',
+    'Drupal': '💧',
+    'Strapi': '🚀',
+    'Shopify': '🛒',
+    'WooCommerce': '🛒',
+    
+    // Game Engines & Frameworks spécifiques
+    'JavaFX': '☕',
+    'Tkinter': '🖼️',
+    'Qt': '🔷',
+    'Electron': '⚛️',
+    'Tauri': '🦀',
+  };
+  
+  return techIcons[tech] || '💻'; // Icône par défaut
+};
+
 const ProjectDetailsPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
@@ -51,7 +190,8 @@ const ProjectDetailsPage: React.FC = () => {
               <div className="tech-grid">
                 {project.technologies.map((tech) => (
                   <span key={tech} className="tech-badge">
-                    {tech}
+                    <span className="tech-icon">{getTechIcon(tech)}</span>
+                    <span className="tech-name">{tech}</span>
                   </span>
                 ))}
               </div>

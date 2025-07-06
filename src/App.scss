@@ -9,9 +9,9 @@
 
 .app-content {
   flex-grow: 1;
-  padding-top: 90px; // Espace réduit pour le header plus simple
+  padding-top: $header-height; // Utilise la hauteur du header définie dans _variables.scss
   
   @media (max-width: 768px) {
-    padding-top: 80px; // Moins d'espace sur mobile
+    padding-top: $header-height; // Utilise la même hauteur pour mobile pour l'instant
   }
 }
