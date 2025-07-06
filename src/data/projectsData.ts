@@ -7,7 +7,7 @@ export interface Project {
   long_description: string;
   tags: string[];
   technologies: string[];
-  imageUrl: string;
+  images: string[];
   sourceCodeUrl?: string | null;
   liveDemoUrl?: string | null;
 }
@@ -22,7 +22,7 @@ export const projectsData: Project[] = [
       "Ce projet a été réalisé dans le cadre de mes études. L'objectif était de créer un jeu sérieux pour aider les élèves de 3ème à comprendre les concepts de la SVT de manière interactive. Le jeu met le joueur au défi de terraformer une planète en respectant des contraintes écologiques.",
     tags: ["Éducation", "Jeu Vidéo"],
     technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    imageUrl: "",
+    images: [],
     sourceCodeUrl: "https://github.com/matteo-lorenzi/terraforma",
     liveDemoUrl: null,
   },
@@ -34,7 +34,7 @@ export const projectsData: Project[] = [
       'Participation à une GameJam de 48h sur le thème "Connexion". Nous avons développé un jeu de puzzle où le joueur doit reconnecter des réseaux pour rétablir la communication. Ce projet a été une excellente occasion de travailler en équipe sous pression.',
     tags: ["GameJam", "Développement"],
     technologies: ["Python", "Pygame"],
-    imageUrl: "",
+    images: [],
     sourceCodeUrl: "https://github.com/matteo-lorenzi/gamejam-connexion",
     liveDemoUrl: null,
   },
@@ -47,7 +47,7 @@ export const projectsData: Project[] = [
       "Fish'Event est une application web qui permet aux passionnés de pêche de trouver et de participer à des événements près de chez eux. L'application inclut une carte interactive, un système d'inscription et un fil d'actualité pour chaque événement.",
     tags: ["Évènementiel", "Application"],
     technologies: ["Java", "JavaFX"],
-    imageUrl: "",
+    images: [],
     sourceCodeUrl: "https://github.com/matteo-lorenzi/fishevent",
     liveDemoUrl: "https://fishevent.example.com",
   },
@@ -60,7 +60,7 @@ export const projectsData: Project[] = [
       "Ce projet en binôme visait à développer un algorithme de reconnaissance de sujets dans des dépêches. En utilisant une base de données de dépêches, le programme Java développé pouvait analyser le texte d'une dépêche et déterminer automatiquement son sujet. La collaboration étroite a favorisé l'échange d'idées et la résolution de défis. Ce projet a permis d'appliquer des compétences algorithmiques tout en renforçant les compétences en communication et en collaboration.",
     tags: ["Algorithmique", "Java", "Travail d'équipe"],
     technologies: ["Java"],
-    imageUrl: "",
+    images: [],
     sourceCodeUrl: null,
     liveDemoUrl: null,
   },
@@ -73,7 +73,7 @@ export const projectsData: Project[] = [
       "Dans ce projet, nous avons installé un environnement de développement complet, incluant un système d'exploitation, Git, Visual Studio Code, IntelliJ IDEA et le JDK Java. Pour rendre le processus accessible à tous, nous avons créé des illustrations visuelles et des schémas explicatifs, simplifiant les explications techniques. Cette approche a permis de rendre le processus convivial et de développer des compétences en synthèse et en vulgarisation d'informations techniques.",
     tags: ["Développement", "Documentation", "Vulgarisation"],
     technologies: ["Java"],
-    imageUrl: "",
+    images: [],
     sourceCodeUrl: null,
     liveDemoUrl: null,
   },
@@ -87,7 +87,7 @@ export const projectsData: Project[] = [
       "Réalisé en trinôme, ce projet visait à créer un site web pour faciliter la recherche de stages dans le numérique pour les élèves de troisième. Nous avons effectué des recherches sur l'entreprise ATOS, défini les besoins dans un cahier des charges, créé le wireframe du site, puis développé le site en HTML et CSS. Ce projet a permis d'apprendre à rechercher et partager efficacement des informations, à les vulgariser, et à développer un site web de A à Z.",
     tags: ["Développement Web", "Gestion de projet", "UI/UX"],
     technologies: ["HTML", "CSS"],
-    imageUrl: "",
+    images: [],
     sourceCodeUrl: null,
     liveDemoUrl: null,
   },

@@ -283,16 +283,11 @@
     border: 1px solid rgba(64, 224, 208, 0.2);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-    cursor: pointer;
 
     &:hover {
       transform: translateY(-4px);
       border-color: $primary-color;
       box-shadow: 0 12px 40px rgba(64, 224, 208, 0.15);
-
-      .project-overlay {
-        opacity: 1;
-      }
     }
 
     .project-image {
@@ -330,7 +325,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        opacity: 0;
+        opacity: 1; /* Always visible */
         transition: opacity 0.3s ease;
 
         .view-details {

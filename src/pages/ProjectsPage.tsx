@@ -1,40 +1,12 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { projectsData, technologyThemes, getAllTags, type Project } from '../data/projectsData.ts';
 import './ProjectsPage.scss';
 
 const ProjectsPage: React.FC = () => {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-
-  // Gestionnaire pour fermer la modal avec Escape
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && selectedProject) {
-        closeProjectDetail();
-      }
-    };
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (selectedProject && target.classList.contains('project-modal-overlay')) {
-        closeProjectDetail();
-      }
-    };
-
-    if (selectedProject) {
-      document.addEventListener('keydown', handleEscape);
-      document.addEventListener('click', handleClickOutside);
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('click', handleClickOutside);
-      document.body.style.overflow = '';
-    };
-  }, [selectedProject]);
 
   // Filtrage des projets
   const filteredProjects = useMemo(() => {
@@ -69,16 +41,6 @@ const ProjectsPage: React.FC = () => {
   const clearFilters = () => {
     setSelectedTechnologies([]);
     setSelectedTags([]);
-  };
-
-  // Ouverture du détail d'un projet
-  const openProjectDetail = (project: Project) => {
-    setSelectedProject(project);
-  };
-
-  // Fermeture du détail
-  const closeProjectDetail = () => {
-    setSelectedProject(null);
   };
 
   return (
@@ -167,20 +129,20 @@ const ProjectsPage: React.FC = () => {
             {filteredProjects.map((project: Project) => (
               <article key={project.id} className="project-card">
                 <div className="project-image">
-                  {project.imageUrl ? (
-                    <img src={project.imageUrl} alt={project.title} />
+                  {project.images && project.images.length > 0 ? (
+                    <img src={project.images[0]} alt={project.title} />
                   ) : (
                     <div className="project-image-placeholder">
                       <span>{project.title.charAt(0)}</span>
                     </div>
                   )}
                   <div className="project-overlay">
-                    <button 
+                    <Link 
+                      to={`/projects/${project.id}`}
                       className="view-details"
-                      onClick={() => openProjectDetail(project)}
                     >
                       Voir les détails
-                    </button>
+                    </Link>
                   </div>
                 </div>
                 
@@ -225,73 +187,6 @@ const ProjectsPage: React.FC = () => {
           )}
         </main>
       </div>
-
-      {/* Modal de détail du projet */}
-      {selectedProject && (
-        <div className="project-modal-overlay">
-          <div className="project-modal">
-            <button 
-              className="close-modal" 
-              onClick={closeProjectDetail}
-              aria-label="Fermer la modal"
-            >
-              ×
-            </button>
-            
-            <div className="modal-content">
-              <div className="modal-image">
-                <img src={selectedProject.imageUrl} alt={selectedProject.title} />
-              </div>
-              
-              <div className="modal-info">
-                <h2>{selectedProject.title}</h2>
-                <p className="project-description">{selectedProject.long_description}</p>
-                
-                <div className="modal-tags">
-                  <h4>Catégories</h4>
-                  <div className="tags-list">
-                    {selectedProject.tags.map((tag: string) => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="modal-technologies">
-                  <h4>Technologies utilisées</h4>
-                  <div className="tech-list">
-                    {selectedProject.technologies.map((tech: string) => (
-                      <span key={tech} className="tech">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="modal-actions">
-                  {selectedProject.sourceCodeUrl && (
-                    <a 
-                      href={selectedProject.sourceCodeUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="btn-primary"
-                    >
-                      Voir le code source
-                    </a>
-                  )}
-                  {selectedProject.liveDemoUrl && (
-                    <a 
-                      href={selectedProject.liveDemoUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="btn-secondary"
-                    >
-                      Démo live
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
