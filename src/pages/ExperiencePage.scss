@@ -1,0 +1,174 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+@use "sass:color";
+
+.experience-section {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.experience-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-label {
+  color: $primary-color;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  display: block;
+}
+
+.experience-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: $text-color;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.experience-subtitle {
+  font-size: 1.25rem;
+  color: $text-muted;
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+  line-height: 1.6;
+}
+
+.experience-timeline {
+  position: relative;
+  padding-left: 2rem;
+  text-align: left;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, $primary-color 0%, $secondary-color 100%);
+    border-radius: 1px;
+    z-index: 1;
+  }
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-left: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -8px;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: $primary-color;
+  border-radius: 50%;
+  border: 3px solid #1a1a1a;
+  box-shadow: 
+    0 0 0 3px rgba(64, 224, 208, 0.3),
+    0 0 0 1px #1a1a1a;
+  z-index: 2;
+}
+
+.timeline-content {
+  h3 {
+    color: $text-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  h4 {
+    color: $primary-color;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-duration {
+    color: $text-muted;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-description {
+    color: $text-muted;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .tech-tag {
+      background: rgba(64, 224, 208, 0.1);
+      color: $primary-color;
+      border: 1px solid rgba(64, 224, 208, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .experience-section {
+    padding: 60px 15px;
+  }
+
+  .experience-subtitle {
+    margin-bottom: 3rem;
+  }
+
+  .experience-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item {
+    padding-left: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-dot {
+    left: -6px;
+  }
+
+  .timeline-content {
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+    }
+
+    .timeline-duration {
+      font-size: 0.85rem;
+    }
+
+    .timeline-description {
+      font-size: 0.95rem;
+    }
+  }
+}

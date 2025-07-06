@@ -1,0 +1,31 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Styles de base pour les titres
+h1, h2, h3, h4, h5, h6 {
+  color: $primary-color;
+}
+
+// Styles de base pour les liens
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

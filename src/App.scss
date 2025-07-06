@@ -1,0 +1,17 @@
+@use './styles/variables' as *;
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $background-color 0%, $surface-color 100%);
+}
+
+.app-content {
+  flex-grow: 1;
+  padding-top: 90px; // Espace réduit pour le header plus simple
+  
+  @media (max-width: 768px) {
+    padding-top: 80px; // Moins d'espace sur mobile
+  }
+}

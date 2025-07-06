@@ -1,0 +1,20 @@
+// Variables SCSS (couleurs, typographie, espacements)
+$primary-color: #40e0d0; // Turquoise moderne
+$secondary-color: #8a2be2; // Violet
+$accent-color: #ff1493; // Rose vif
+$text-color: #f8f8f2; // Blanc cassé
+$text-muted: #a8a8a2; // Gris clair
+$background-color: #0f0f23; // Bleu très foncé
+$surface-color: #1a1a2e; // Bleu foncé
+$terminal-bg: rgba(16, 16, 16, 0.95); // Noir terminal
+
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-family-mono: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+$font-size-base: 16px;
+
+$spacing-unit: 8px;
+
+// Breakpoints
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;

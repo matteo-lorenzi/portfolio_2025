@@ -1,0 +1,257 @@
+import React, { useState } from 'react';
+import './ContactPage.scss';
+
+interface FormData {
+  nom: string;
+  prenom: string;
+  email: string;
+  message: string;
+}
+
+interface FormErrors {
+  nom?: string;
+  prenom?: string;
+  email?: string;
+  message?: string;
+}
+
+const ContactPage: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    nom: '',
+    prenom: '',
+    email: '',
+    message: ''
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.nom.trim()) {
+      newErrors.nom = 'Le nom est requis';
+    }
+
+    if (!formData.prenom.trim()) {
+      newErrors.prenom = 'Le prénom est requis';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'L\'adresse email est requise';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'L\'adresse email n\'est pas valide';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Le message est requis';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Le message doit contenir au moins 10 caractères';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    // Effacer l'erreur du champ modifié
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulation d'envoi (remplacer par votre logique d'envoi réelle)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setIsSubmitted(true);
+      setFormData({
+        nom: '',
+        prenom: '',
+        email: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className="contact-page">
+        <div className="contact-container">
+          <div className="success-message">
+            <div className="success-icon">✓</div>
+            <h2>Message envoyé avec succès !</h2>
+            <p>Merci pour votre message. Je vous répondrai dans les plus brefs délais.</p>
+            <button 
+              className="btn-primary"
+              onClick={() => setIsSubmitted(false)}
+            >
+              Envoyer un autre message
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="contact-page">
+      <div className="contact-container">
+        <div className="contact-header">
+          <span className="section-label">Contact</span>
+          <h1 className="contact-title">Contactez-moi</h1>
+          <p className="contact-subtitle">
+            N'hésitez pas à me contacter pour discuter de vos projets ou opportunités
+          </p>
+        </div>
+
+        <div className="contact-content">
+          <div className="contact-info">
+            <div className="info-card">
+              <div className="info-icon">📧</div>
+              <h3>Email</h3>
+              <p>lorenzi.matteo30@gmail.com</p>
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon">📱</div>
+              <h3>Téléphone</h3>
+              <p>+33 7 69 63 96 50</p>
+            </div>
+
+            <div className="info-card">
+              <div className="info-icon">📍</div>
+              <h3>Localisation</h3>
+              <p>France</p>
+            </div>
+
+            <div className="contact-availability">
+              <h3>Disponibilité</h3>
+              <p>
+                Actuellement étudiant en informatique, je suis ouvert aux opportunités de stage, 
+                projets collaboratifs et discussions techniques.
+              </p>
+              <div className="status-indicator">
+                <span className="status-dot"></span>
+                {' '}Disponible pour de nouveaux projets
+              </div>
+            </div>
+          </div>
+
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <h2>Envoyez-moi un message</h2>
+            
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="prenom">Prénom *</label>
+                <input
+                  type="text"
+                  id="prenom"
+                  name="prenom"
+                  value={formData.prenom}
+                  onChange={handleInputChange}
+                  className={errors.prenom ? 'error' : ''}
+                  placeholder="Votre prénom"
+                />
+                {errors.prenom && <span className="error-message">{errors.prenom}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="nom">Nom *</label>
+                <input
+                  type="text"
+                  id="nom"
+                  name="nom"
+                  value={formData.nom}
+                  onChange={handleInputChange}
+                  className={errors.nom ? 'error' : ''}
+                  placeholder="Votre nom"
+                />
+                {errors.nom && <span className="error-message">{errors.nom}</span>}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Adresse email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={errors.email ? 'error' : ''}
+                placeholder="votre.email@exemple.com"
+              />
+              {errors.email && <span className="error-message">{errors.email}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="message">Message *</label>
+              <textarea
+                id="message"
+                name="message"
+                rows={6}
+                value={formData.message}
+                onChange={handleInputChange}
+                className={errors.message ? 'error' : ''}
+                placeholder="Décrivez votre projet, vos besoins ou posez-moi vos questions..."
+              />
+              {errors.message && <span className="error-message">{errors.message}</span>}
+              <div className="character-count">
+                {formData.message.length} / 1000 caractères
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              className="btn-submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  {' '}Envoi en cours...
+                </>
+              ) : (
+                <>
+                  <span>Envoyer le message</span>
+                  <span className="submit-icon">→</span>
+                </>
+              )}
+            </button>
+
+            <p className="form-note">
+              * Champs obligatoires. Vos données personnelles sont protégées et ne seront utilisées 
+              que pour répondre à votre message.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactPage;
