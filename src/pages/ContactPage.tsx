@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './ContactPage.scss';
 
 interface FormData {
@@ -26,6 +27,11 @@ const ContactPage: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const serviceID = 'service_vuzecyq'; // Remplacez par votre Service ID EmailJS
+  const templateID = 'template_kyal3vk'; // Remplacez par votre Template ID EmailJS
+  const publicKey = 'PoGnrCUYga5WfPeOc'; // Remplacez par votre Public Key EmailJS
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -72,16 +78,20 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setSubmitError(null); // Réinitialiser l'erreur d'envoi
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulation d'envoi (remplacer par votre logique d'envoi réelle)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await emailjs.send(serviceID, templateID, {
+        from_name: `${formData.prenom} ${formData.nom}`,
+        from_email: formData.email,
+        message: formData.message,
+      }, publicKey);
       
       setIsSubmitted(true);
       setFormData({
@@ -92,6 +102,7 @@ const ContactPage: React.FC = () => {
       });
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
+      setSubmitError('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');
     } finally {
       setIsSubmitting(false);
     }
@@ -110,6 +121,29 @@ const ContactPage: React.FC = () => {
               onClick={() => setIsSubmitted(false)}
             >
               Envoyer un autre message
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (submitError) {
+    return (
+      <div className="contact-page">
+        <div className="contact-container">
+          <div className="error-message-display">
+            <div className="error-icon">✗</div>
+            <h2>Erreur d'envoi !</h2>
+            <p>{submitError}</p>
+            <button 
+              className="btn-primary"
+              onClick={() => {
+                setIsSubmitted(false);
+                setSubmitError(null);
+              }}
+            >
+              Réessayer
             </button>
           </div>
         </div>
