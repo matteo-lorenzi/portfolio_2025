@@ -25,12 +25,12 @@ const AboutPage: React.FC = () => {
             <div className="skills-section">
               <h3 className="skills-title">Compétences</h3>
               <div className="skills-grid">
-                {aboutData.skillCategories.map((category, index) => (
-                  <div key={index} className="skill-category">
+                {aboutData.skillCategories.map((category) => (
+                  <div key={category.title} className="skill-category">
                     <h4>{category.title}</h4>
                     <div className="skill-tags">
-                      {category.skills.map((skill, skillIndex) => (
-                        <span key={skillIndex} className="skill-tag">{skill}</span>
+                      {category.skills.map((skill) => (
+                        <span key={skill} className="skill-tag">{skill}</span>
                       ))}
                     </div>
                   </div>
@@ -41,8 +41,8 @@ const AboutPage: React.FC = () => {
             <div className="journey-section">
               <h3 className="journey-title">Mon Parcours</h3>
               <div className="journey-timeline">
-                {aboutData.timeline.map((item, index) => (
-                  <div key={index} className="timeline-item">
+                {aboutData.timeline.map((item) => (
+                  <div key={`${item.period}-${item.institution}`} className="timeline-item">
                     <div className="timeline-dot"></div>
                     <div className="timeline-content">
                       <h4>{item.period}</h4>
@@ -76,8 +76,8 @@ const AboutPage: React.FC = () => {
                 <h3>{aboutData.personalInfo.name}</h3>
                 <p>{aboutData.personalInfo.title}</p>
                 <div className="profile-stats">
-                  {aboutData.profileStats.map((stat, index) => (
-                    <div key={index} className="stat">
+                  {aboutData.profileStats.map((stat) => (
+                    <div key={stat.label} className="stat">
                       <span className="stat-number">{stat.number}</span>
                       <span className="stat-label">{stat.label}</span>
                     </div>
@@ -101,8 +101,8 @@ const AboutPage: React.FC = () => {
             <div className="interests-card">
               <h4>Centres d'intérêt</h4>
               <div className="interests-list">
-                {aboutData.interests.map((interest, index) => (
-                  <div key={index} className="interest-item">
+                {aboutData.interests.map((interest) => (
+                  <div key={interest.name} className="interest-item">
                     <span className="interest-icon">{interest.icon}</span>
                     <span>{interest.name}</span>
                   </div>

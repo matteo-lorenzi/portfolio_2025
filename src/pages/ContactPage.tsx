@@ -165,8 +165,8 @@ const ContactPage: React.FC = () => {
 
         <div className="contact-content">
           <div className="contact-info">
-            {contactData.contactInfo.map((info, index) => (
-              <div key={index} className="info-card">
+            {contactData.contactInfo.map((info) => (
+              <div key={info.title} className="info-card">
                 <div className="info-icon">{info.icon}</div>
                 <h3>{info.title}</h3>
                 <p>{info.value}</p>
