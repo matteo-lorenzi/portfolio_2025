@@ -4,8 +4,9 @@ export const experienceData = [
     company: 'MSH-Alpes',
     duration: '2024 - 2025',
     description: `Pas encore de description`,
-    technologies: ['UI Design', 'UX Research', 'Figma'],
-  },  {
+    technologies: ['UI Design', 'UX Research', 'Figma', 'HTML/CSS', 'JavaScript', 'React', 'PHP', 'MySQL'],
+  },
+  {
     title: 'Développeur web',
     company: 'MSH-Alpes',
     duration: '2023 - 2024',

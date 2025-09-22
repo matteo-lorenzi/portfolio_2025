@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import './ContactPage.scss';
+import { contactData } from '../data/contactData';
 
 interface FormData {
   nom: string;
@@ -29,9 +30,9 @@ const ContactPage: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const serviceID = 'service_vuzecyq'; // Remplacez par votre Service ID EmailJS
-  const templateID = 'template_kyal3vk'; // Remplacez par votre Template ID EmailJS
-  const publicKey = 'PoGnrCUYga5WfPeOc'; // Remplacez par votre Public Key EmailJS
+  const serviceID = contactData.emailConfig.serviceID;
+  const templateID = contactData.emailConfig.templateID;
+  const publicKey = contactData.emailConfig.publicKey;
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -156,41 +157,30 @@ const ContactPage: React.FC = () => {
       <div className="contact-container">
         <div className="contact-header">
           <span className="section-label">Contact</span>
-          <h1 className="contact-title">Contactez-moi</h1>
+          <h1 className="contact-title">{contactData.pageInfo.title}</h1>
           <p className="contact-subtitle">
-            N'hésitez pas à me contacter pour discuter de vos projets ou opportunités
+            {contactData.pageInfo.subtitle}
           </p>
         </div>
 
         <div className="contact-content">
           <div className="contact-info">
-            <div className="info-card">
-              <div className="info-icon">📧</div>
-              <h3>Email</h3>
-              <p>lorenzi.matteo30@gmail.com</p>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">📱</div>
-              <h3>Téléphone</h3>
-              <p>+33 7 69 63 96 50</p>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">📍</div>
-              <h3>Localisation</h3>
-              <p>France</p>
-            </div>
+            {contactData.contactInfo.map((info, index) => (
+              <div key={index} className="info-card">
+                <div className="info-icon">{info.icon}</div>
+                <h3>{info.title}</h3>
+                <p>{info.value}</p>
+              </div>
+            ))}
 
             <div className="contact-availability">
               <h3>Disponibilité</h3>
               <p>
-                Actuellement étudiant en informatique, je suis ouvert aux opportunités de stage, 
-                projets collaboratifs et discussions techniques.
+                {contactData.availability.description}
               </p>
-              <div className="status-indicator">
+              <div className={`status-indicator ${contactData.availability.statusColor}`}>
                 <span className="status-dot"></span>
-                {' '}Disponible pour de nouveaux projets
+                {' '}{contactData.availability.statusText}
               </div>
             </div>
           </div>

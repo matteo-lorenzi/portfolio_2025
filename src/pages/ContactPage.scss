@@ -156,9 +156,21 @@
       .status-dot {
         width: 10px;
         height: 10px;
-        background: #00ff88;
         border-radius: 50%;
         animation: pulse 2s infinite;
+      }
+
+      // États de disponibilité
+      &.available .status-dot {
+        background: #00ff88;
+      }
+
+      &.busy .status-dot {
+        background: #ffa500;
+      }
+
+      &.unavailable .status-dot {
+        background: #ff4757;
       }
     }
   }
