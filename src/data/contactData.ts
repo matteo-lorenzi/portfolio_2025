@@ -146,9 +146,7 @@ export const contactData: ContactData = {
     },
   ],
 
-  // ⚠️ CHANGEZ VOTRE STATUT DE DISPONIBILITÉ ICI ⚠️
-  // Choisissez une option depuis AVAILABILITY_OPTIONS
-  availability: AVAILABILITY_OPTIONS.AVAILABLE, // ← Changez cette ligne !
+  availability: AVAILABILITY_OPTIONS.STUDYING,
 
   emailConfig: {
     serviceID: "service_vuzecyq",
@@ -159,30 +157,3 @@ export const contactData: ContactData = {
 
 // Exports individuels pour faciliter l'accès
 export const { pageInfo, contactInfo, availability, emailConfig } = contactData;
-
-/* 
-🎯 GUIDE D'UTILISATION RAPIDE
-
-Pour changer votre statut de disponibilité, modifiez la ligne 120 :
-availability: AVAILABILITY_OPTIONS.VOTRE_CHOIX,
-
-📋 OPTIONS DISPONIBLES :
-• AVAILABILITY_OPTIONS.AVAILABLE         → 🟢 Disponible pour nouveaux projets
-• AVAILABILITY_OPTIONS.BUSY              → 🟠 Actuellement occupé
-• AVAILABILITY_OPTIONS.UNAVAILABLE       → 🔴 Non disponible
-• AVAILABILITY_OPTIONS.LOOKING_INTERNSHIP → 🟢 Recherche un stage
-• AVAILABILITY_OPTIONS.FREELANCE         → 🟢 Ouvert aux missions freelance
-• AVAILABILITY_OPTIONS.VACATION          → 🔴 En vacances
-• AVAILABILITY_OPTIONS.STUDYING          → 🟠 Période d'examens
-• AVAILABILITY_OPTIONS.CUSTOM            → ⚙️ Statut personnalisé (modifiez ligne 102-107)
-
-💡 EXEMPLES :
-availability: AVAILABILITY_OPTIONS.LOOKING_INTERNSHIP,  // Recherche un stage
-availability: AVAILABILITY_OPTIONS.VACATION,           // En vacances
-availability: AVAILABILITY_OPTIONS.FREELANCE,          // Ouvert au freelance
-
-🎨 COULEURS AUTOMATIQUES :
-• available (🟢) = vert
-• busy (🟠) = orange  
-• unavailable (🔴) = rouge
-*/
