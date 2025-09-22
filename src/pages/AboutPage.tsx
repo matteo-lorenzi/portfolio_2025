@@ -83,6 +83,18 @@ const AboutPage: React.FC = () => {
                     </div>
                   ))}
                 </div>
+                <div className="profile-actions">
+                  <a 
+                    href={aboutData.personalInfo.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="github-btn"
+                    aria-label="Voir mon profil GitHub"
+                  >
+                    <span className="github-icon">📂</span>
+                    <span>Voir mon GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
 

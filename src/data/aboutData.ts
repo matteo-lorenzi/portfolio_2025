@@ -4,6 +4,7 @@ export interface PersonalInfo {
   title: string;
   description: string;
   initials: string;
+  githubUrl: string;
 }
 
 export interface SkillCategory {
@@ -45,6 +46,7 @@ export const aboutData: AboutData = {
     description:
       "Je suis Matteo Lorenzi, étudiant en informatique passionné par le développement web et le design moderne. J'aime créer des expériences utilisateur innovantes et esthétiques qui combinent fonctionnalité et élégance visuelle.",
     initials: "ML",
+    githubUrl: "https://github.com/matteo-lorenzi",
   },
 
   skillCategories: [

@@ -350,6 +350,43 @@
   }
 }
 
+.profile-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    color: $background-color;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(64, 224, 208, 0.3);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+    }
+
+    .github-icon {
+      font-size: 1.1rem;
+      display: inline-block;
+    }
+  }
+}
+
 .interests-card {
   h4 {
     color: $text-color;
