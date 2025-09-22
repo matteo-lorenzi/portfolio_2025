@@ -142,11 +142,11 @@ export const contactData: ContactData = {
     {
       icon: "📍",
       title: "Localisation",
-      value: "France",
+      value: "France - Poitiers",
     },
   ],
 
-  availability: AVAILABILITY_OPTIONS.STUDYING,
+  availability: AVAILABILITY_OPTIONS.LOOKING_INTERNSHIP,
 
   emailConfig: {
     serviceID: "service_vuzecyq",
