@@ -20,6 +20,15 @@ const Footer: React.FC = () => {
             </p>
           </div>
           
+          <div className="footer-center">
+            <div className="loader">
+              <div className="circle"></div>
+              <div className="circle"></div>
+              <div className="circle"></div>
+              <div className="circle"></div>
+            </div>
+          </div>
+          
           <div className="footer-links">
             <a 
               href="https://github.com" 
