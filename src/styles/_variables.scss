@@ -16,6 +16,9 @@ $header-height: 58.8px; // Hauteur du header
 $spacing-unit: 8px;
 
 // Breakpoints
-$mobile: 768px;
+$mobile-small: 320px;
+$mobile: 576px;
+$mobile-large: 768px;
 $tablet: 1024px;
 $desktop: 1200px;
+$desktop-large: 1920px;

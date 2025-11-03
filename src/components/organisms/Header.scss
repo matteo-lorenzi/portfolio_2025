@@ -10,42 +10,85 @@
   background: rgba(15, 15, 35, 0.95);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(64, 224, 208, 0.15);
-  padding: 1rem 0;
-  min-height: $header-height;
+  padding: clamp(0.75rem, 1.5vw, 1rem) 0;
+  min-height: clamp(60px, 10vw, 70px);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+
+  @media (max-width: 576px) {
+    min-height: 60px;
+    padding: 0.75rem 0;
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    min-height: 65px;
+  }
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 3vw, 2rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20rem;
+  gap: clamp(1rem, 5vw, 3rem);
 
-  @media (max-width: 768px) {
+  @media (max-width: 576px) {
     padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    padding: 0 1.5rem;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1600px;
+  }
+
+  @media (min-width: 1920px) {
+    max-width: 1800px;
+    padding: 0 3rem;
   }
 }
 
 .logo {
+  flex-shrink: 0;
+  
   .logo-link {
     text-decoration: none;
     font-family: $font-family-base;
-    font-size: 1.5rem;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     font-weight: 700;
     background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
+    display: inline-block;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
 
     &:hover {
       transform: translateY(-1px);
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .logo-text {
+    white-space: nowrap;
+    
+    @media (max-width: 400px) {
+      font-size: 1rem;
     }
   }
 }
@@ -53,40 +96,78 @@
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: clamp(1rem, 2vw, 2rem);
 
-  @media (max-width: 768px) {
+  @media (max-width: 576px) {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: min(85vw, 280px);
     height: 100vh;
+    height: 100dvh;
+    background: rgba(15, 15, 35, 0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(64, 224, 208, 0.2);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) 0;
+    overflow-y: auto;
+
+    &.nav-open {
+      right: 0;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(70vw, 320px);
+    height: 100vh;
+    height: 100dvh;
     background: rgba(15, 15, 35, 0.98);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    transition: right 0.3s ease;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(20px);
     border-left: 1px solid rgba(64, 224, 208, 0.2);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) 0;
 
     &.nav-open {
       right: 0;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    gap: 1.25rem;
   }
 }
 
 .nav-link {
   text-decoration: none;
   font-family: $font-family-base;
-  font-size: 0.95rem;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
   font-weight: 500;
   color: $text-muted;
-  padding: 0.75rem 1.25rem;
+  padding: clamp(0.625rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.25rem);
   border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  user-select: none;
+  white-space: nowrap;
 
   &::before {
     content: '';
@@ -99,13 +180,19 @@
     transition: width 0.3s ease;
   }
 
-  &:hover {
-    color: $primary-color;
-    background: rgba(64, 224, 208, 0.08);
-    
-    &::before {
-      width: 100%;
+  @media (hover: hover) {
+    &:hover {
+      color: $primary-color;
+      background: rgba(64, 224, 208, 0.08);
+      
+      &::before {
+        width: 100%;
+      }
     }
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 
   &.active {
@@ -137,10 +224,17 @@
     }
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
+  @media (max-width: 576px) {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
+    width: min(200px, 80vw);
+    text-align: center;
+  }
+
+  @media (min-width: 577px) and (max-width: 768px) {
+    font-size: 1.05rem;
     padding: 1rem 2rem;
-    width: 200px;
+    width: 220px;
     text-align: center;
   }
 }
@@ -151,55 +245,94 @@
   border: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 4px;
-  width: 24px;
-  height: 20px;
+  gap: clamp(3px, 0.5vw, 4px);
+  width: clamp(22px, 4vw, 28px);
+  height: clamp(18px, 3vw, 24px);
   position: relative;
   z-index: 1001;
+  padding: 10px;
+  margin: -10px;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  align-items: center;
+  touch-action: manipulation;
+  user-select: none;
 
   span {
     width: 100%;
-    height: 2px;
+    height: clamp(2px, 0.3vw, 2.5px);
     background: $primary-color;
-    transition: all 0.3s ease;
-    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+    transform-origin: center;
   }
 
   &:hover span {
     background: color.adjust($primary-color, $lightness: 15%);
   }
 
+  &:active {
+    transform: scale(0.95);
+  }
+
   @media (max-width: 768px) {
     display: flex;
+  }
+
+  @media (max-width: 576px) {
+    width: 24px;
+    height: 20px;
+    gap: 3px;
+    
+    span {
+      height: 2px;
+    }
   }
 }
 
 // Animation pour le menu hamburger quand ouvert
-.nav-open + .menu-toggle {
+.header-container:has(.nav-open) .menu-toggle {
   span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(clamp(5px, 1vw, 7px), clamp(5px, 1vw, 7px));
   }
   
   span:nth-child(2) {
     opacity: 0;
+    transform: translateX(-10px);
   }
   
   span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(clamp(5px, 1vw, 7px), clamp(-5px, -1vw, -7px));
+  }
+
+  @media (max-width: 576px) {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
   }
 }
 
-// Overlay pour mobile
-@media (max-width: 768px) {
-  .nav-open::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 999;
+// Overlay pour mobile avec amélioration
+.main-nav.nav-open::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+  animation: fadeIn 0.3s ease;
+
+  @media (min-width: 769px) {
+    display: none;
   }
 }
 
@@ -213,5 +346,15 @@
   }
   100% {
     opacity: 0.5;
+  }
+}
+
+// Animation fade in pour l'overlay
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
