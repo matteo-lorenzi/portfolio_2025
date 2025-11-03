@@ -62,9 +62,9 @@ const HeroSection: React.FC = () => {
             </div>
             <div className="terminal-output">
               <p className="hero-description">
-                Étudiant en 3ème année d'informatique, passionné par le design et l'innovation.
+                Étudiant en Master Web éditoriale & Stratégie UX. Je suis passionné par le design et l'innovation.
                 <br />
-                Créateur d'expériences numériques modernes et accessibles.
+                Mon but, créer des expériences numériques modernes et accessibles.
               </p>
             </div>
             <div className="terminal-line">
